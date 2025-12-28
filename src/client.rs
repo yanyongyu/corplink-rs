@@ -416,6 +416,8 @@ impl Client {
     pub async fn login(&mut self) -> Result<()> {
         let resp = self.get_login_method().await?;
         let tps_login_resp = self.get_tps_login_method().await?;
+        log::info!("got login method: {:#?}", resp);
+        log::info!("got tps login method: {:#?}", tps_login_resp);
         let mut tps_login = HashMap::new();
         for resp in tps_login_resp {
             tps_login.insert(resp.alias.clone(), resp);
